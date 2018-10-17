@@ -5,7 +5,8 @@ import "simple-keyboard/build/css/index.css";
 
 class App extends Component {
   state = {
-    layoutName: "default"
+    layoutName: "default",
+    input: ""
   };
 
   onChange = input => {
