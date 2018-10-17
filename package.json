@@ -14,7 +14,7 @@
     "react": "16.3.2",
     "react-dom": "16.3.2",
     "react-scripts": "1.1.4",
-    "react-simple-keyboard": "1.5.6"
+    "react-simple-keyboard": "latest"
   },
   "devDependencies": {},
   "scripts": {
