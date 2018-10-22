@@ -33,6 +33,18 @@ class App extends Component {
     });
   };
 
+  onChangeInput = event => {
+    let input = event.target.value;
+    this.setState(
+      {
+        input: input
+      },
+      () => {
+        this.keyboard.setInput(input);
+      }
+    );
+  };
+
   inputStyle = {
     width: "100%",
     height: "100px",
@@ -48,14 +60,12 @@ class App extends Component {
           value={this.state.input}
           style={this.inputStyle}
           placeholder={"Tap on the virtual keyboard to start"}
-          readOnly
         />
         <Keyboard
           ref={r => (this.keyboard = r)}
           layoutName={this.state.layoutName}
           onChange={input => this.onChange(input)}
           onKeyPress={button => this.onKeyPress(button)}
-          debug={true}
         />
       </div>
     );
