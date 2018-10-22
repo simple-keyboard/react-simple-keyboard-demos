@@ -60,6 +60,7 @@ class App extends Component {
           value={this.state.input}
           style={this.inputStyle}
           placeholder={"Tap on the virtual keyboard to start"}
+          onChange={e => this.onChangeInput(e)}
         />
         <Keyboard
           ref={r => (this.keyboard = r)}
