@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import Keyboard from "react-simple-keyboard";
-import "simple-keyboard/build/css/index.css";
+import "react-simple-keyboard/build/css/index.css";
 
 class App extends Component {
   state = {
