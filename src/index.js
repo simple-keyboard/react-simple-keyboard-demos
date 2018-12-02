@@ -59,6 +59,21 @@ class App extends Component {
           layoutName={this.state.layoutName}
           onChange={input => this.onChange(input)}
           onKeyPress={button => this.onKeyPress(button)}
+          theme={"hg-theme-default myTheme2"}
+          buttonTheme={[
+            {
+              class: "myTheme2b",
+              buttons: "{bksp}"
+            }
+          ]}
+          display={{
+            "{enter}": "submit",
+            "{bksp}": "delete",
+            "{lock}": "lock",
+            "{shift}": "shift",
+            "{tab}": "tab",
+            "{space}": " "
+          }}
         />
       </div>
     );
