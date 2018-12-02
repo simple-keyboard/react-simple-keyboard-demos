@@ -56,6 +56,7 @@ class App extends Component {
         />
         <Keyboard
           ref={r => (this.keyboard = r)}
+          theme={"hg-theme-default myTheme1"}
           layoutName={this.state.layoutName}
           onChange={input => this.onChange(input)}
           onKeyPress={button => this.onKeyPress(button)}
