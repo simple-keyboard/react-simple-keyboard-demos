@@ -1,5 +1,5 @@
 <p><img src="https://franciscohodge.com/project-pages/simple-keyboard/images/react.png" width="60" align="center" /></p>
-<a href="https://simple-keyboard.com/demo" title="View Demo" target="_blank"><img src="https://franciscohodge.com/project-pages/simple-keyboard/images/simplekeyboard-banner3x.png" align="center" width="100%"></a>
+<a href="https://simple-keyboard.com/demo" title="View Demo" target="_blank"><img src="https://franciscohodge.com/project-pages/simple-keyboard/images/reactsimplekeyboard-banner3.png" align="center" width="100%"></a>
 
   <p>
   <blockquote><strong>This is a repository for simple-keyboard's React demos</strong> <br /> https://virtual-keyboard.js.org/react</blockquote>
