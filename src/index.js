@@ -21,16 +21,29 @@ class App extends Component {
     console.log("Button pressed", button);
 
     /**
-     * If you want to handle the shift and caps lock buttons
+     * Shift functionality
      */
-    if (button === "{shift}" || button === "{lock}") this.handleShift();
+    if (button === "{shift}") this.handleShift();
+
+    /**
+     * Caps functionality
+     */
+    if (button === "{lock}") this.handleCaps();
   };
 
   handleShift = () => {
     let layoutName = this.state.layoutName;
 
     this.setState({
-      layoutName: layoutName === "default" ? "shift" : "default"
+      layoutName: layoutName === "shift" ? "default" : "shift"
+    });
+  };
+
+  handleCaps = () => {
+    let layoutName = this.state.layoutName;
+
+    this.setState({
+      layoutName: layoutName === "caps" ? "default" : "caps"
     });
   };
 
@@ -51,12 +64,35 @@ class App extends Component {
       <div>
         <input
           value={this.state.input}
-          placeholder={"Tap on the virtual keyboard to start"}
+          placeholder={"Press shift or caps to see different layouts"}
           onChange={e => this.onChangeInput(e)}
         />
         <Keyboard
           ref={r => (this.keyboard = r)}
           layoutName={this.state.layoutName}
+          layout={{
+            default: [
+              "` 1 2 3 4 5 6 7 8 9 0 - = {bksp}",
+              "{tab} q w e r t y u i o p [ ] \\",
+              "{lock} a s d f g h j k l ; ' {enter}",
+              "{shift} z x c v b n m , . / {shift}",
+              ".com @ {space}"
+            ],
+            shift: [
+              "~ ! @ # $ % ^ & * ( ) _ + {bksp}",
+              "{tab} Q W E R T Y U I O P { } |",
+              '{lock} A S D F G H J K L : " {enter}',
+              "{shift} Z X C V B N M < > ? {shift}",
+              ".com @ {space}"
+            ],
+            caps: [
+              "` 1 2 3 4 5 6 7 8 9 0 - = {bksp}",
+              "{tab} Q W E R T Y U I O P [ ] \\",
+              "{lock} A S D F G H J K L ; ' {enter}",
+              "{shift} Z X C V B N M , . / {shift}",
+              ".com @ {space}"
+            ]
+          }}
           onChange={input => this.onChange(input)}
           onKeyPress={button => this.onKeyPress(button)}
         />
