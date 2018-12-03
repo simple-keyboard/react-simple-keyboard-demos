@@ -19,10 +19,6 @@ class App extends Component {
 
   onKeyPress = button => {
     console.log("Button pressed", button);
-
-    /**
-     * If you want to handle the shift and caps lock buttons
-     */
     if (button === "{shift}" || button === "{lock}") this.handleShift();
   };
 
@@ -30,7 +26,7 @@ class App extends Component {
     let layoutName = this.state.layoutName;
 
     this.setState({
-      layoutName: layoutName === "default" ? "shift" : "default"
+      layoutName: layoutName === "shift" ? "default" : "shift"
     });
   };
 
@@ -47,6 +43,15 @@ class App extends Component {
   };
 
   render() {
+    let sharedProps = {
+      layoutName: this.state.layoutName,
+      onChange: input => this.onChange(input),
+      onKeyPress: button => this.onKeyPress(button),
+
+      // This syncs the input of all keyboards
+      syncInstanceInputs: true
+    };
+
     return (
       <div>
         <input
@@ -54,12 +59,14 @@ class App extends Component {
           placeholder={"Tap on the virtual keyboard to start"}
           onChange={e => this.onChangeInput(e)}
         />
-        <Keyboard
-          ref={r => (this.keyboard = r)}
-          layoutName={this.state.layoutName}
-          onChange={input => this.onChange(input)}
-          onKeyPress={button => this.onKeyPress(button)}
-        />
+
+        <div className={"container"}>
+          <h3>Keyboard 1</h3>
+          <Keyboard ref={r => (this.keyboard = r)} {...sharedProps} />
+
+          <h3>Keyboard 2</h3>
+          <Keyboard {...sharedProps} baseClass={"keyboard2"} />
+        </div>
       </div>
     );
   }
