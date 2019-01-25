@@ -7,7 +7,8 @@ import "./index.css";
 class App extends Component {
   state = {
     layoutName: "default",
-    input: ""
+    input: "",
+    inputPattern: /^\d+$/
   };
 
   onChange = input => {
@@ -24,6 +25,15 @@ class App extends Component {
      * If you want to handle the shift and caps lock buttons
      */
     if (button === "{shift}" || button === "{lock}") this.handleShift();
+
+    // You can notify users when they've pressed the wrong button, if you want.
+    // Maybe not with an "alert()", but you get the idea :)
+    if (
+      !button.match(this.state.inputPattern) &&
+      !button.includes("{") // Making sure it's not a {function} button
+    ) {
+      alert("Please only input numbers");
+    }
   };
 
   handleShift = () => {
@@ -50,8 +60,9 @@ class App extends Component {
     return (
       <div>
         <input
+          type={"number"}
           value={this.state.input}
-          placeholder={"Tap on the virtual keyboard to start"}
+          placeholder={"Only integers will work in this input"}
           onChange={e => this.onChangeInput(e)}
         />
         <Keyboard
@@ -59,6 +70,7 @@ class App extends Component {
           layoutName={this.state.layoutName}
           onChange={input => this.onChange(input)}
           onKeyPress={button => this.onKeyPress(button)}
+          inputPattern={this.state.inputPattern}
         />
       </div>
     );
