@@ -9,8 +9,7 @@ class App extends Component {
 
   state = {
     layoutName: "default",
-    input: "",
-    inputPattern: this.pattern
+    input: ""
   };
 
   onChange = input => {
