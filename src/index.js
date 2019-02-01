@@ -6,15 +6,19 @@ import "./index.css";
 
 class App extends Component {
   state = {
-    layoutName: "default",
-    input: ""
+    layoutName: "ip",
+    inputName: "input1",
+    input: {},
+    // Just for demo purposes
+    submittedData: ""
   };
 
-  onChange = input => {
+  onChangeAll = inputObj => {
     this.setState({
-      input: input
+      input: inputObj
     });
-    console.log("Input changed", input);
+
+    console.log("Input changed", inputObj);
   };
 
   onKeyPress = button => {
@@ -24,6 +28,8 @@ class App extends Component {
      * If you want to handle the shift and caps lock buttons
      */
     if (button === "{shift}" || button === "{lock}") this.handleShift();
+
+    if (button === "{clear}") this.clearScreen();
   };
 
   handleShift = () => {
@@ -35,31 +41,135 @@ class App extends Component {
   };
 
   onChangeInput = event => {
-    let input = event.target.value;
+    let inputVal = event.target.value;
+
+    let updatedInputObj = {
+      ...this.state.input,
+      [this.state.inputName]: inputVal
+    };
+
     this.setState(
       {
-        input: input
+        input: updatedInputObj
       },
       () => {
-        this.keyboard.setInput(input);
+        this.keyboard.setInput(inputVal);
       }
     );
   };
 
+  setActiveInput = inputName => {
+    this.setState(
+      {
+        inputName: inputName,
+        keyboardOpen: true
+      },
+      () => {
+        console.log("Active input", inputName);
+      }
+    );
+  };
+
+  closeKeyboard = () => {
+    this.setState({
+      keyboardOpen: false
+    });
+  };
+
+  submit = () => {
+    this.setState({
+      submittedData: JSON.stringify(this.state.input)
+    });
+    console.log(this.state.input);
+  };
+
+  clearScreen = () => {
+    let input = { ...this.state.input };
+    let inputName = this.state.inputName;
+    input[inputName] = "";
+
+    this.setState({ input }, () => {
+      this.keyboard.clearInput(inputName);
+      console.log(
+        "cleared",
+        input,
+        this.keyboard.keyboard.options.inputName,
+        this.keyboard.keyboard.input,
+        this.keyboard.getInput()
+      );
+    });
+  };
+
   render() {
+    let { input, keyboardOpen, submittedData } = this.state;
+
     return (
       <div>
-        <input
-          value={this.state.input}
-          placeholder={"Tap on the virtual keyboard to start"}
-          onChange={e => this.onChangeInput(e)}
-        />
-        <Keyboard
-          ref={r => (this.keyboard = r)}
-          layoutName={this.state.layoutName}
-          onChange={input => this.onChange(input)}
-          onKeyPress={button => this.onKeyPress(button)}
-        />
+        <h3>Tap on an input to reveal the keyboard</h3>
+        <div className="inputsContainer">
+          <input
+            onFocus={() => this.setActiveInput("input1")}
+            value={input["input1"] || ""}
+            placeholder={"Input 1"}
+            onChange={e => this.onChangeInput(e)}
+          />
+          <input
+            onFocus={() => this.setActiveInput("input2")}
+            value={input["input2"] || ""}
+            placeholder={"Input 2"}
+            onChange={e => this.onChangeInput(e)}
+          />
+          <input
+            onFocus={() => this.setActiveInput("input3")}
+            value={input["input3"] || ""}
+            placeholder={"Input 3"}
+            onChange={e => this.onChangeInput(e)}
+          />
+          <input
+            onFocus={() => this.setActiveInput("input4")}
+            value={input["input4"] || ""}
+            placeholder={"Input 4"}
+            onChange={e => this.onChangeInput(e)}
+          />
+          <input
+            onFocus={() => this.setActiveInput("input5")}
+            value={input["input5"] || ""}
+            placeholder={"Input 5"}
+            onChange={e => this.onChangeInput(e)}
+          />
+          <input
+            onFocus={() => this.setActiveInput("input6")}
+            value={input["input6"] || ""}
+            placeholder={"Input 6"}
+            onChange={e => this.onChangeInput(e)}
+          />
+        </div>
+        <div className={`keyboardContainer ${!keyboardOpen ? "hidden" : ""}`}>
+          <Keyboard
+            ref={r => (this.keyboard = r)}
+            inputName={this.state.inputName}
+            layoutName={this.state.layoutName}
+            onChangeAll={inputObj => this.onChangeAll(inputObj)}
+            onKeyPress={button => this.onKeyPress(button)}
+            layout={{
+              ip: ["1 2 3", "4 5 6", "7 8 9", ". 0 {clear}", "{bksp} {enter}"]
+            }}
+            display={{
+              "{clear}": "C",
+              "{bksp}": "backspace",
+              "{enter}": "enter"
+            }}
+          />
+          <button className="submitBtn" onClick={this.submit}>
+            Submit
+          </button>
+          <button className="closeBtn" onClick={this.closeKeyboard}>
+            Close Keyboard
+          </button>
+        </div>
+        {submittedData &&
+          <div className={"submittedData"}><h4>Submitted Data:</h4><div className="data">{submittedData}</div></div>
+        }
       </div>
     );
   }
