@@ -61,7 +61,7 @@ class App extends Component {
         inputStatus: inputStatus
       },
       () => {
-        this.keyboard.setInput(input);
+        this.keyboardRef.keyboard.setInput(input);
       }
     );
   };
@@ -80,7 +80,7 @@ class App extends Component {
           onChange={e => this.onChangeInput(e)}
         />
         <Keyboard
-          ref={r => (this.keyboard = r)}
+          ref={r => (this.keyboardRef = r)}
           layoutName={this.state.layoutName}
           onChange={input => this.onChange(input)}
           onKeyPress={button => this.onKeyPress(button)}
