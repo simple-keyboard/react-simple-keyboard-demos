@@ -137,7 +137,7 @@ class App extends Component {
         input: input
       },
       () => {
-        this.keyboard.setInput(input);
+        this.keyboardRef.keyboard.setInput(input);
       }
     );
   };
@@ -153,7 +153,7 @@ class App extends Component {
         <div className={"keyboardContainer"}>
           <Keyboard
             baseClass={"simple-keyboard-main"}
-            ref={r => (this.keyboard = r)}
+            ref={r => (this.keyboardRef = r)}
             layoutName={this.state.layoutName}
             {...this.keyboardOptions}
           />
