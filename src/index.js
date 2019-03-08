@@ -37,7 +37,7 @@ class App extends Component {
         input: input
       },
       () => {
-        this.keyboard.setInput(input);
+        this.keyboardRef.keyboard.setInput(input);
       }
     );
   };
@@ -62,7 +62,7 @@ class App extends Component {
 
         <div className={"container"}>
           <h3>Keyboard 1</h3>
-          <Keyboard ref={r => (this.keyboard = r)} {...sharedProps} />
+          <Keyboard ref={r => (this.keyboardRef = r)} {...sharedProps} />
 
           <h3>Keyboard 2</h3>
           <Keyboard {...sharedProps} baseClass={"keyboard2"} />
