@@ -28,12 +28,12 @@ class App extends Component {
 
     // You can notify users when they've pressed the wrong button, if you want.
     // Maybe not with an "alert()", but you get the idea :)
-    if (
+    /*if (
       !button.match(this.state.inputPattern) &&
       !button.includes("{") // Making sure it's not a {function} button
     ) {
       alert("Please only input numbers");
-    }
+    }*/
   };
 
   handleShift = () => {
