@@ -78,7 +78,7 @@ class App extends Component {
           buttonTheme={[
             {
               class: "myArrowBtns",
-              buttons: "{arrowleft} [{arrowup} {arrowdown}] {arrowright}"
+              buttons: "{arrowleft} {arrowup} {arrowdown} {arrowright}"
             }
           ]}
         />
