@@ -53,7 +53,7 @@ class App extends Component {
         input: updatedInputObj
       },
       () => {
-        this.keyboardRef.keyboard.setInput(inputVal);
+        this.keyboard.setInput(inputVal);
       }
     );
   };
@@ -89,13 +89,13 @@ class App extends Component {
     input[inputName] = "";
 
     this.setState({ input }, () => {
-      this.keyboardRef.keyboard.clearInput(inputName);
+      this.keyboard.clearInput(inputName);
       console.log(
         "cleared",
         input,
-        this.keyboardRef.keyboard.options.inputName,
-        this.keyboardRef.keyboard.input,
-        this.keyboardRef.keyboard.getInput()
+        this.keyboard.options.inputName,
+        this.keyboard.input,
+        this.keyboard.getInput()
       );
     });
   };
@@ -146,7 +146,7 @@ class App extends Component {
         </div>
         <div className={`keyboardContainer ${!keyboardOpen ? "hidden" : ""}`}>
           <Keyboard
-            ref={r => (this.keyboardRef = r)}
+            keyboardRef={r => (this.keyboard = r)}
             inputName={this.state.inputName}
             layoutName={this.state.layoutName}
             onChangeAll={inputObj => this.onChangeAll(inputObj)}
