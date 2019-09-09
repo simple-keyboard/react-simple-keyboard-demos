@@ -161,12 +161,10 @@ class App extends Component {
           <div className="controlArrows">
             <Keyboard
               baseClass={"simple-keyboard-control"}
-              ref={r => (this.keyboard = r)}
               {...this.keyboardControlPadOptions}
             />
             <Keyboard
               baseClass={"simple-keyboard-arrows"}
-              ref={r => (this.keyboard = r)}
               {...this.keyboardArrowsOptions}
             />
           </div>
@@ -174,12 +172,10 @@ class App extends Component {
           <div className="numPad">
             <Keyboard
               baseClass={"simple-keyboard-numpad"}
-              ref={r => (this.keyboard = r)}
               {...this.keyboardNumPadOptions}
             />
             <Keyboard
               baseClass={"simple-keyboard-numpadEnd"}
-              ref={r => (this.keyboard = r)}
               {...this.keyboardNumPadEndOptions}
             />
           </div>
