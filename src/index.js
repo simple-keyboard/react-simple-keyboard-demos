@@ -1,3 +1,8 @@
+/**
+ * FYI: This is a demo for class components
+ * To use simple-keyboard with React Hooks / Function components, check out:
+ * https://franciscohodge.com/projects/react-simple-keyboard/demos/basic-setup-react-hooks/
+ */
 import React, { Component } from "react";
 import { render } from "react-dom";
 import Keyboard from "react-simple-keyboard";
