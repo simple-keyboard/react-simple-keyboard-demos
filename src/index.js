@@ -30,7 +30,7 @@ class App extends Component {
   };
 
   handleShift = () => {
-    let layoutName = this.state.layoutName;
+    const layoutName = this.state.layoutName;
 
     this.setState({
       layoutName: layoutName === "default" ? "shift" : "default"
@@ -38,7 +38,7 @@ class App extends Component {
   };
 
   onChangeInput = event => {
-    let input = event.target.value;
+    const input = event.target.value;
     this.setState({ input });
     this.keyboard.setInput(input);
   };
